@@ -1,10 +1,7 @@
-import {StrictMode} from 'react';
-import {createRoot} from 'react-dom/client';
-import GameScreen from './components/GameScreen';
-import './index.css';
+import { supabase } from './lib/supabase'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <GameScreen />
-  </StrictMode>,
-);
+// Test immédiat
+supabase.from('visitor').select('*').limit(1).then(({ data, error }) => {
+  if (error) console.log("Erreur de connexion :", error.message)
+  else console.log("Données reçues de Supabase :", data)
+})
